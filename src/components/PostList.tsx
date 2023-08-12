@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPosts } from '../api/postApi';
+import { fetchPosts, deletePost } from '../api/postApi';
 import {useHistory} from "react-router-dom";
 
 interface Post {
@@ -12,6 +12,8 @@ interface Post {
 
 function PostList() {
     const [posts, setPosts] = useState<Post[]>([]);
+    const [error, setError] = useState('');
+
     const history = useHistory();
     useEffect(() => {
         fetchAndSetPosts();
@@ -20,7 +22,6 @@ function PostList() {
     const fetchAndSetPosts = async () => {
         try {
             const postsData = await fetchPosts();
-            console.log("-----------postsData",postsData)
             setPosts(postsData);
         } catch (error) {
             // Handle error if needed
@@ -31,8 +32,17 @@ function PostList() {
         history.push(`/posts/edit/${postId}`);
     };
 
-    const handleDelete = (postId: number) => {
-        console.log('Delete post:', postId);
+    const handleDelete = async (postId: number) => {
+        try {
+            const result = await deletePost(postId);
+            if (result.success) {
+                history.push('/');
+            } else {
+                setError(result.error || 'Error deleting the post. Please try again.');
+            }
+        } catch (error) {
+            setError('An error occurred while deleting the post. Please try again.');
+        }
     };
 
     const handleNewPost = () => {

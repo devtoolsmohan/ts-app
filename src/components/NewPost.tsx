@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { newPost } from '../api/postApi';
-
+import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import {newPost} from '../api/postApi';
+import Layout from './Layout';
 
 function NewPost() {
     const [name, setName] = useState('');
@@ -17,7 +17,7 @@ function NewPost() {
         event.preventDefault();
 
         // Basic validation
-        if (!name || !description || !date ) {
+        if (!name || !description || !date) {
             setError('All fields are required.');
             return;
         }
@@ -25,7 +25,7 @@ function NewPost() {
         setError('');
 
 
-        const postData = { name, description, date, userid };
+        const postData = {name, description, date, userid};
 
         const result = await newPost(postData);
 
@@ -37,44 +37,46 @@ function NewPost() {
     };
 
     return (
-        <div>
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                {error && <p>{error}</p>}
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="lastName">Description:</label>
-                    <input
-                        type="text"
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Date:</label>
-                    <input
-                        type="date"
-                        id="date"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        required
-                    />
-                </div>
+        <Layout>
+            <div>
+                <h2>Sign Up</h2>
+                <form onSubmit={handleSubmit}>
+                    {error && <p>{error}</p>}
+                    <div>
+                        <label htmlFor="name">Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="lastName">Description:</label>
+                        <input
+                            type="text"
+                            id="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Date:</label>
+                        <input
+                            type="date"
+                            id="date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <button type="submit">Save</button>
-            </form>
-        </div>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </Layout>
     );
 }
 

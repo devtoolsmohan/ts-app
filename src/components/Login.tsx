@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { login } from '../api/authApi';
 
@@ -8,7 +8,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const history = useHistory();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -24,7 +23,7 @@ function Login() {
 
         const result = await login(credentials);
         if (result.success) {
-            history.push('/dashboard');
+            window.location.href = "/";
         } else {
             setError(result.error || 'Error logging in. Please try again.');
         }

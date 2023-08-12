@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
@@ -14,10 +14,6 @@ function App() {
     return (
       <Router>
         <Switch>
-          {/*<Route path="/" exact component={Home} />*/}
-          {/*<Route path="/login" component={Login} />*/}
-          {/*<Route path="/signup" component={Signup} />*/}
-          {/*<Route path="/posts" component={PostList} />*/}
         <ProtectedRoute
             path="/dashboard"
             component={Dashboard}

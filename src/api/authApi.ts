@@ -1,5 +1,3 @@
-import jwt from 'jsonwebtoken';
-
 export const login = async (credentials: any) => {
     try {
         const response = await fetch('http://localhost:5000/api/login', {
@@ -34,7 +32,6 @@ export const signup = async (userData: any) => {
             },
             body: JSON.stringify(userData),
         });
-        console.log("jmkhkjhjkhjkhk==========")
         if (response.ok) {
             return { success: true };
         } else if (response.status === 400) {
