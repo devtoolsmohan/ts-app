@@ -61,16 +61,16 @@ function EditPost() {
                         required
                     />
                 </div>
-                <div>
-                    <label htmlFor="email">Date:</label>
-                    <input
-                        type="date"
-                        id="date"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        required
-                    />
-                </div>
+                {/*<div>*/}
+                {/*    <label htmlFor="email">Date:</label>*/}
+                {/*    <input*/}
+                {/*        type="date"*/}
+                {/*        id="date"*/}
+                {/*        value={date}*/}
+                {/*        onChange={(e) => setDate(e.target.value)}*/}
+                {/*        required*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 <button type="submit">Save</button>
             </form>
